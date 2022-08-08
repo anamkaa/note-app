@@ -1,0 +1,69 @@
+.ff-nav-wrap {
+  background-color: var(--nt-bg);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  padding: 0.5rem 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+}
+
+.ff-nav-head {
+  font-weight: 500;
+  font-size: 2.5rem;
+  justify-self: start;
+}
+
+.ff-nav-icon-wrap {
+  justify-self: end;
+}
+
+.ff-hero-wrap {
+  background-color: var(--nt-bg);
+  position: relative;
+  top: 76px;
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.ff-hero-container-main {
+  flex: 50%;
+}
+
+.ff-hero-container-text {
+  color: var(--bg-white);
+}
+
+.ff-btn-primary {
+  color: var(--bg-white);
+  text-transform: uppercase;
+  background: var(--nt-primary);
+  font-size: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+}
+
+.ff-btn-secondary {
+  font-weight: 500;
+}
+
+.ff-nav-search {
+  width: 100%;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  border: none;
+}
+
+.ff-hero-text-box {
+  margin: 1rem;
+  line-height: 3rem;
+  padding: 0;
+}
+
+.text-black {
+  color: var(--nt-black);
+}
+
+.cursor {
+  cursor: pointer;
+}
