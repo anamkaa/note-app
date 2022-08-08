@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Aside from "../components/Aside";
 import { ArrowCircleUp } from "phosphor-react";
 
-const ArchivePage = () => {
+export const ArchivePage = () => {
   return (
     <>
       <Navbar />
@@ -29,4 +29,3 @@ const ArchivePage = () => {
   );
 };
 
-export default ArchivePage;

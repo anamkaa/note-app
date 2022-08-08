@@ -2,7 +2,7 @@ import React from "react";
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 
-const HomePage = () => {
+export const HomePage = () => {
   return (
     <>
       <Navbar />
@@ -11,4 +11,3 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;

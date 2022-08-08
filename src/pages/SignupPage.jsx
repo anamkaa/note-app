@@ -2,7 +2,7 @@ import React from "react";
 import SignupForm from "../components/SignupForm";
 import Navbar from "../components/Navbar";
 
-const SignupPage = () => {
+export const SignupPage = () => {
   return (
     <>
       <Navbar />
@@ -11,4 +11,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+

@@ -3,7 +3,7 @@ import LoginForm from "../components/LoginForm";
 import LogoutForm from "../components/LogoutForm";
 import Navbar from "../components/Navbar";
 
-const LoginPage = () => {
+export const LoginPage = () => {
   return (
     <>
       <Navbar />
@@ -14,4 +14,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+

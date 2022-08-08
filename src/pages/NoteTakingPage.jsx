@@ -4,7 +4,7 @@ import Aside from "../components/Aside";
 import Topbar from "../components/Topbar";
 import { ArrowCircleUp } from "phosphor-react";
 
-const NoteTakingPage = () => {
+export const NoteTakingPage = () => {
   return (
     <>
       <Navbar />
@@ -30,4 +30,4 @@ const NoteTakingPage = () => {
   );
 };
 
-export default NoteTakingPage;
+
