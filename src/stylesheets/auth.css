@@ -1,0 +1,40 @@
+.ff-auth-wrap-main {
+  position: relative;
+  top: 76px;
+  display: grid;
+  place-items: center;
+  background-color: var(--nt-bg);
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.ff-auth-title {
+  margin: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.ff-auth-wrap {
+  margin: 1rem;
+  color: var(--nt-black);
+  background-color: var(--bg-white);
+  border-radius: 0.2rem;
+  box-shadow: rgb(0 0 0 / 2%) 0px 1px 1px, rgb(0 0 0 / 2%) 0px 4px 4px,
+    rgb(0 0 0 / 2%) 0px 4px 4px, rgb(0 0 0 / 2%) 0px 8px 8px,
+    rgb(0 0 0 / 2%) 0px 16px 16px;
+}
+
+.ff-input-margin {
+  margin: 1rem 3rem;
+}
+
+.ff-auth-input-text {
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.ff-auth-text-sm {
+  font-size: 0.8rem;
+  padding-inline: 0.2rem;
+}
