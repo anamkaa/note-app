@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import ArchivePage from "./pages/ArchivePage";
-import HomePage from "./pages/HomePage";
-import LabelPage from "./pages/LabelPage";
-import LoginPage from "./pages/LoginPage";
-import NoteTakingPage from "./pages/NoteTakingPage";
-import SignupPage from "./pages/SignupPage";
-import TrashPage from "./pages/TrashPage";
+// import ArchivePage from "./pages/ArchivePage";
+// import HomePage from "./pages/HomePage";
+// import LabelPage from "./pages/LabelPage";
+// import LoginPage from "./pages/LoginPage";
+// import NoteTakingPage from "./pages/NoteTakingPage";
+// import SignupPage from "./pages/SignupPage";
+// import TrashPage from "./pages/TrashPage";
+import {ArchivePage,HomePage,LoginPage,LabelPage,NoteTakingPage,SignupPage,TrashPage} from "./pages"
 
 function App() {
   return (
