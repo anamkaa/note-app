@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import {RequireAuth} from "./components/RequireAuth";
 // import ArchivePage from "./pages/ArchivePage";
 // import HomePage from "./pages/HomePage";
 // import LabelPage from "./pages/LabelPage";
@@ -14,10 +15,14 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/noteTaking" element={<NoteTakingPage />} />
-        <Route path="/archive" element={<ArchivePage />} />
-        <Route path="/label" element={<LabelPage />} />
-        <Route path="/trash" element={<TrashPage />} />
+        <Route path="/noteTaking" element={
+          <RequireAuth>
+        <NoteTakingPage />
+        </RequireAuth>} />
+        <Route path="/archive" element={
+         <RequireAuth><ArchivePage /></RequireAuth>} />
+        <Route path="/label" element={<RequireAuth><LabelPage /></RequireAuth>} />
+        <Route path="/trash" element={<RequireAuth><TrashPage /></RequireAuth>} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
