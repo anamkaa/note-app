@@ -2,8 +2,13 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Aside from "../components/Aside";
 import { ArrowCircleUp } from "phosphor-react";
+import { useNotes } from "../context/notes-context";
+import NoteCard from "../components/NoteCard";
 
 export const ArchivePage = () => {
+
+  const {notesState:{archives}} = useNotes();
+
   return (
     <>
       <Navbar />
@@ -21,7 +26,9 @@ export const ArchivePage = () => {
 
         <div className="ff-container-content">
           <div className="ff-container-video-card">
-            Archived notes will appear here
+           {
+            archives.length ? archives.map((item)=><NoteCard note={item}/>) : "Nothing in archive"
+           }
           </div>
         </div>
       </div>
