@@ -1,8 +1,35 @@
-import React from "react";
+import React,{useState} from "react";
 import { CaretRight } from "phosphor-react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const signupHandler = async () => {
+    try {
+      const { data } = await axios.post(`/api/auth/signup`, {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      });
+      console.log(data);
+      localStorage.setItem("token", data.encodedToken);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  
+
   return (
     <>
       <div className="ff-auth-wrap-main">
@@ -18,6 +45,10 @@ const SignupForm = () => {
               id="ff-firstname"
               className="ff-input"
               required
+              onChange={(e) => {
+                setFirstName(e.target.value);
+              }}
+              value={firstName}
             />
           </div>
 
@@ -25,14 +56,20 @@ const SignupForm = () => {
             <label for="ff-lastname" className="ff-auth-input-text text-left">
               Last Name
             </label>
-            <input type="text" id="ff-lastname" className="ff-input" required />
+            <input type="text" id="ff-lastname" className="ff-input" required  onChange={(e) => {
+                setLastName(e.target.value);
+              }}
+              value={lastName} />
           </div>
 
           <div className="ff-input-margin ff-auth-wrap-input flex flex-col">
             <label for="ff-email" className="ff-auth-input-text text-left">
               Email address
             </label>
-            <input type="text" id="ff-email" className="ff-input" required />
+            <input type="text" id="ff-email" className="ff-input" required   onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              value={email} />
           </div>
 
           <div className="ff-input-margin ff-auth-wrap-input flex flex-col">
@@ -44,6 +81,10 @@ const SignupForm = () => {
               id="ff-password"
               className="ff-input"
               required
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              value={password}
             />
           </div>
 
@@ -60,7 +101,10 @@ const SignupForm = () => {
           </div>
 
           <div className="ff-input-margin ff-auth-wrap-input flex flex-col">
-            <button className=" ff-category-text btn ff-btn-primary">
+            <button className=" ff-category-text btn ff-btn-primary" 
+             onClick={() => {
+              signupHandler();
+            }}>
               Create New Account
             </button>
           </div>

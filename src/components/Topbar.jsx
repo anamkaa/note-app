@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { FadersHorizontal, Plus } from "phosphor-react";
 import FilterPopup from "./FilterPopup";
+import NoteModal from "./NoteModal";
+import { useNotes } from "../context/notes-context";
+import { useModal } from "../context/modal-context";
 
 const Topbar = () => {
   const [filterPopup, setFilterPopup] = useState(false);
+  const {noteModal,setNoteModal} = useModal();
+  const {note} = useNotes();
 
   return (
     <>
@@ -12,7 +17,9 @@ const Topbar = () => {
         id="category"
       >
         <div className="ff-container-content-category flex flex-align-center flex-wrap">
-          <div className="ff-category-text btn ff-btn-primary text-black flex flex-align-center flex-justify-center">
+          <div className="ff-category-text btn ff-btn-primary text-black flex flex-align-center flex-justify-center"
+          onClick={()=>setNoteModal(!noteModal)}
+          >
             <Plus size={14} className="ff-aside-chip-icon" weight="bold" />
             Add Note
           </div>
@@ -24,10 +31,8 @@ const Topbar = () => {
           }
           className="flex flex-align-center cursor flex-justify-center"
         >
-          <div className="text-black h6">Filter</div>
-
           <FadersHorizontal
-            size={18}
+            size={24}
             className="text-black ff-icon-filter"
             weight="bold"
           />
@@ -35,6 +40,7 @@ const Topbar = () => {
 
         {filterPopup && <FilterPopup />}
       </div>
+      {noteModal && <NoteModal modalnote={note} />}
     </>
   );
 };
