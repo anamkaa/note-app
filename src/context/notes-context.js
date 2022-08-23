@@ -10,10 +10,10 @@ export const NotesProvider = ({ children }) => {
         return { ...state, notes: action.payload };
 
       case "EDIT_NOTE":
-        return {...state , notes: action.payload}  
+        return { ...state, notes: action.payload };
 
       case "DELETE_FROM_NOTE":
-        return {...state, notes: action.payload};
+        return { ...state, notes: action.payload };
 
       case "MOVE_TO_TRASH":
         return { ...state, trash: action.payload };
@@ -33,8 +33,8 @@ export const NotesProvider = ({ children }) => {
       case "REMOVE_FROM_ARCHIVE":
         return { ...state, archives: action.payload };
 
-        default:
-            return state;
+      default:
+        return state;
     }
   };
 

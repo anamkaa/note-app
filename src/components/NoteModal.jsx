@@ -14,11 +14,11 @@ import {
 } from "phosphor-react";
 import { useNotes } from "../context/notes-context";
 import { useAuth } from "../context/auth-context";
-import { addNewNoteService, } from "../services/noteServices";
+import { addNewNoteService } from "../services/noteServices";
 import { editNoteService } from "../services/noteServices";
 import { useModal } from "../context/modal-context";
 
-const NoteModal = ({}) => {
+const NoteModal = ({ setEditNoteModal }) => {
   const [modalColor, setModalColor] = useState(false);
   const [modalLevel, setModalLevel] = useState(false);
   const { noteObj, note, setNote, notesState, notesDispatch } = useNotes();
@@ -26,37 +26,32 @@ const NoteModal = ({}) => {
     user: { isLogged, tokenVal },
   } = useAuth();
 
-  const {noteModal,setNoteModal} = useModal();
+  const { noteModal, setNoteModal } = useModal();
 
   const addNewNoteHandler = () => {
     if (isLogged) {
       addNewNoteService(note, tokenVal, notesDispatch);
     }
-    setNote(noteObj)
+    setNote(noteObj);
   };
 
-  // const editNoteHandler = () => {
-  //   if(isLogged){
-  //     editNoteService(modalnote._id,note,tokenVal,notesDispatch);
-  //   }
-  //   setNote({...note,isediting:false});
-  // }
-
-  //  const editNoteHandler = () => {
-  //   if(isLogged){
-  //     editNoteService(note._id,note,tokenVal,notesDispatch);
-  //     setNote(noteObj)
-  //     setNote({...note,isediting:false});
-  //   }
-  // }
+  const editNoteHandler = () => {
+    if (isLogged) {
+      editNoteService(note._id, note, tokenVal, notesDispatch);
+    }
+    setNote(noteObj);
+  };
 
   const finalBgColor = note.bgColor;
   const enableBtn = note.title && note.body;
 
   return (
     <>
-      <div className="nt-note-modal-wrap" style={{backgroundColor:finalBgColor}}>
-        <div className="nt-note-modal-title text-left h4">
+      <div
+        className="nt-note-modal-wrap"
+        style={{ backgroundColor: finalBgColor }}
+      >
+        <div className="nt-note-modal-title  text-left h4">
           <input
             type="text"
             name="note-title"
@@ -67,7 +62,7 @@ const NoteModal = ({}) => {
               setNote({ ...note, title: e.target.value });
             }}
             value={note.title}
-            style={{backgroundColor:finalBgColor}}
+            style={{ backgroundColor: finalBgColor }}
           />
         </div>
         <div className="nt-note-modal-editor flex flex-align-center flex-justify-space-around">
@@ -91,7 +86,7 @@ const NoteModal = ({}) => {
               setNote({ ...note, body: e.target.value });
             }}
             value={note.body}
-            style={{backgroundColor:finalBgColor}}
+            style={{ backgroundColor: finalBgColor }}
           />
         </div>
         <hr />
@@ -106,7 +101,7 @@ const NoteModal = ({}) => {
               setNote({ ...note, label: e.target.value });
             }}
             value={note.label}
-            style={{backgroundColor:finalBgColor}}
+            style={{ backgroundColor: finalBgColor }}
           />
         </div>
         <div className="nt-note-modal-foot flex flex-align-center flex-justify-space-btw">
@@ -127,40 +122,36 @@ const NoteModal = ({}) => {
             />
           </div>
           <div className="nt-note-modal-foot-btn flex flex-align-center flex-justify-space-btw">
-            <button className="nt-btn btn-ghost nt-input h6" style={{backgroundColor:finalBgColor}}
-            onClick={() => 
-              {
-               setNoteModal(false);
+            <button
+              className="nt-btn btn-ghost nt-input h6"
+              style={{ backgroundColor: finalBgColor }}
+              onClick={() => {
+                if (note.isediting === true) {
+                  setEditNoteModal(false);
+                  setNote(noteObj);
+                } else {
+                  setNoteModal(false);
+                }
               }}
-            >CANCEL</button>
+            >
+              CANCEL
+            </button>
 
             <button
               className="nt-btn nt-input h6 text-bold"
-              onClick={() => 
-                {
+              onClick={() => {
+                if (note.isediting === true) {
+                  editNoteHandler();
+                  setEditNoteModal(false);
+                } else {
                   addNewNoteHandler();
-                 setNoteModal(false);
+                  setNoteModal(false);
                 }
-
-              // {
-              //   if(note.isediting){
-              //     editNoteHandler();
-              //   }
-              //   else{
-              //     addNewNoteHandler()
-              //     setNoteModal(false);
-              //   }
-              // }
-               }
-               style={{backgroundColor:finalBgColor}}
-               disabled={!enableBtn}
+              }}
+              style={{ backgroundColor: finalBgColor }}
+              disabled={!enableBtn}
             >
-             {/* {
-              note.isediting ? "Update" : "Add"
-             } */}
- Add
-           
-             
+              {note.isediting ? "Update" : "Add"}
             </button>
           </div>
         </div>
@@ -172,28 +163,28 @@ const NoteModal = ({}) => {
             weight="fill"
             style={{ color: "#D9F8C4" }}
             className="nt-icon"
-            onClick={()=>setNote({...note,bgColor:"#D9F8C4"})}
+            onClick={() => setNote({ ...note, bgColor: "#D9F8C4" })}
           />
           <Circle
             size={32}
             weight="fill"
             style={{ color: "#B2C8DF" }}
             className="nt-icon"
-            onClick={()=>setNote({...note,bgColor:"#B2C8DF"})}
+            onClick={() => setNote({ ...note, bgColor: "#B2C8DF" })}
           />
           <Circle
             size={32}
             weight="fill"
             style={{ color: "#D3CEDF" }}
             className="nt-icon"
-            onClick={()=>setNote({...note,bgColor:"#D3CEDF"})}
+            onClick={() => setNote({ ...note, bgColor: "#D3CEDF" })}
           />
           <Circle
             size={32}
             weight="fill"
             style={{ color: "#F2D7D9" }}
             className="nt-icon"
-            onClick={()=>setNote({...note,bgColor:"#F2D7D9"})}
+            onClick={() => setNote({ ...note, bgColor: "#F2D7D9" })}
           />
         </div>
       )}
@@ -201,15 +192,33 @@ const NoteModal = ({}) => {
       {modalLevel && (
         <div className="nt-note-modal-color nt-note-modal-wrap flex flex-align-center flex-justify-evenly">
           <div className="flex flex-align-center flex-justify-start text-left nt-input">
-            <input type="radio" name="note-priority" id="" className="" onClick={()=>setNote({...note,priority:"Low"})} />
+            <input
+              type="radio"
+              name="note-priority"
+              id=""
+              className=""
+              onClick={() => setNote({ ...note, priority: "Low" })}
+            />
             Low
           </div>
           <div className="flex flex-align-center flex-justify-start text-left nt-input">
-            <input type="radio" name="note-priority" id="" className="" onClick={()=>setNote({...note,priority:"Medium"})} />
+            <input
+              type="radio"
+              name="note-priority"
+              id=""
+              className=""
+              onClick={() => setNote({ ...note, priority: "Medium" })}
+            />
             Medium
           </div>
           <div className="flex flex-align-center flex-justify-start text-left nt-input">
-            <input type="radio" name="note-priority" id="" className="" onClick={()=>setNote({...note,priority:"High"})} />
+            <input
+              type="radio"
+              name="note-priority"
+              id=""
+              className=""
+              onClick={() => setNote({ ...note, priority: "High" })}
+            />
             High
           </div>
         </div>
