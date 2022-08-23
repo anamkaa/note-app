@@ -2,15 +2,21 @@ import React from "react";
 import { useFilter } from "../context/filter-context";
 
 const FilterPopup = () => {
-
-  const {filterState:{byPriority,byDate},filterDispatch} = useFilter();
-  console.log(byPriority)
+  const {
+    filterState: { byPriority, byDate },
+    filterDispatch,
+  } = useFilter();
 
   return (
     <>
       <div className="ff-popup-sort text-black">
         <div className="ff-popup-chip flex flex-align-center flex-justify-end">
-          <div className="text-small text-bold cursor" onClick={()=>filterDispatch({type:"CLEAR_FILTER"})}>CLEAR</div>
+          <div
+            className="text-small text-bold cursor"
+            onClick={() => filterDispatch({ type: "CLEAR_FILTER" })}
+          >
+            CLEAR
+          </div>
         </div>
 
         <div className="ff-popup-chip flex flex-align-center flex-justify-start text-left text-bold">
@@ -29,8 +35,10 @@ const FilterPopup = () => {
             name="sort-date"
             id=""
             className="ff-popup-text"
-onChange={()=>filterDispatch({type:"SORT_BY_DATE",payload:"latest"})}
-checked={byDate==="latest" ? true : false}
+            onChange={() =>
+              filterDispatch({ type: "SORT_BY_DATE", payload: "latest" })
+            }
+            checked={byDate === "latest" ? true : false}
           />
           Latest
         </div>
@@ -41,35 +49,13 @@ checked={byDate==="latest" ? true : false}
             name="sort-date"
             id=""
             className="ff-popup-text"
-            onChange={()=>filterDispatch({type:"SORT_BY_DATE",payload:"oldest"})}
-checked={byDate === "oldest" ? true : false}
+            onChange={() =>
+              filterDispatch({ type: "SORT_BY_DATE", payload: "oldest" })
+            }
+            checked={byDate === "oldest" ? true : false}
           />
           Oldest
         </div>
-
-        {/* <div className="ff-popup-chip flex flex-align-center flex-justify-start text-left h5">
-          Priority
-        </div>
-
-        <div className="ff-popup-chip flex flex-align-center flex-justify-start text-left">
-          <input
-            type="radio"
-            name="sort-priority"
-            id=""
-            className="ff-popup-text"
-          />
-          Low to High
-        </div>
-
-        <div className="ff-popup-chip flex flex-align-center flex-justify-start text-left">
-          <input
-            type="radio"
-            name="sort-priority"
-            id=""
-            className="ff-popup-text"
-          />
-          High to Low
-        </div> */}
 
         <div className="ff-popup-chip flex flex-align-center flex-justify-start text-left text-bold">
           Filter By
@@ -87,8 +73,10 @@ checked={byDate === "oldest" ? true : false}
             name="filter-priority"
             id=""
             className="ff-popup-text"
-            onChange={()=>filterDispatch({type:"FILTER_BY_PRIORITY",payload:"low"})}
-            checked={byPriority==="low" ? true : false}
+            onChange={() =>
+              filterDispatch({ type: "FILTER_BY_PRIORITY", payload: "Low" })
+            }
+            checked={byPriority === "Low" ? true : false}
           />
           Low
         </div>
@@ -99,8 +87,10 @@ checked={byDate === "oldest" ? true : false}
             name="filter-priority"
             id=""
             className="ff-popup-text"
-            onChange={()=>filterDispatch({type:"FILTER_BY_PRIORITY",payload:"medium"})}
-            checked={byPriority==="medium" ? true : false}
+            onChange={() =>
+              filterDispatch({ type: "FILTER_BY_PRIORITY", payload: "Medium" })
+            }
+            checked={byPriority === "Medium" ? true : false}
           />
           Medium
         </div>
@@ -111,8 +101,10 @@ checked={byDate === "oldest" ? true : false}
             name="filter-priority"
             id=""
             className="ff-popup-text"
-            onClick={()=>filterDispatch({type:"FILTER_BY_PRIORITY",payload:"high"})}
-            checked={byPriority==="high" ? true : false}
+            onClick={() =>
+              filterDispatch({ type: "FILTER_BY_PRIORITY", payload: "High" })
+            }
+            checked={byPriority === "High" ? true : false}
           />
           High
         </div>
