@@ -1,19 +1,17 @@
-export const filterByPriority = (notes,byPriority) =>{
-    if(byPriority==="low"){
-        return notes.filter((item)=>{
-            return item.priority === "low"
-        })
-    }
-    else if(byPriority==="medium"){
-        return notes.filter((item)=>{
-            return item.priority === "medium"
-        })
-    }
-    else if(byPriority==="high"){
-        return notes.filter((item)=>{
-            return item.priority === "high"
-        })
-    }
+export const PRIORITY = {
+  low: "LOW",
+  medium: "MEDIUM",
+  high: "HIGH",
+};
+
+export const filterByPriority = (notes, byPriority) => {
+  if (byPriority === "Low") {
+    return [...notes].filter((item) => item.priority === "Low");
+  } else if (byPriority === "Medium") {
+    return [...notes].filter((item) => item.priority === "Medium");
+  } else if (byPriority === "High") {
+    return [...notes].filter((item) => item.priority === "High");
+  }
 
   return notes;
-}
+};
